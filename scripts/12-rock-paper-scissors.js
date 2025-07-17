@@ -67,3 +67,17 @@ function updateScoreElement() {
     ".js-score"
   ).innerHTML = `Wins: ${score.wins} Loses: ${score.loses} Ties: ${score.ties}`;
 }
+let isAutoPlaying = false;
+let intervalId;
+function autoplay() {
+  if (!isAutoPlaying) {
+    intervalId = setInterval(function () {
+      const playerMove = pickComputermove();
+      playGame(playerMove);
+    }, 1000);
+    isAutoPlaying = true;
+  } else {
+    clearInterval(intervalId);
+    isAutoPlaying = false;
+  }
+}
